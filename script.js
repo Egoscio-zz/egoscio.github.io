@@ -5,7 +5,8 @@ function logger(str) {
 }
 
 $('#zero-form').on('submit', function(e) {
+	e.stopPropagation()
+	e.preventDefault()
 	$('#zero-results').html('')
 	zeros($('#zero-input').val(), logger)
-	return false
 })
