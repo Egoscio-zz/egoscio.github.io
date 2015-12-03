@@ -1,0 +1,4 @@
+
+*.espressostorage
+bower_components/mathjs/*
+!bower_components/mathjs/dist/*
