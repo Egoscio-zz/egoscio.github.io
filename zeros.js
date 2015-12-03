@@ -1,65 +1,77 @@
 // zeros.js
 
-var mjs = require('mathjs')
-var args = process.argv.slice(2).join('')
+'use strict';
 
-var helpString = 'Usage: node ./zeros.js expression\nThe expression must use "x".'
-var match = args.match(/((\+|\-)?(x|\d+x?)\^?(\+|\-)?)+/g)
-match = match ? match : []
+function zeros(exp, logger) {
+	exp = exp.split(' ').join('')
+	if (!exp.match(/^\d/)) exp = '1' + exp;
+	var match = exp.match(/((\+|\-)?(x|\d+x?)\^?(\+|\-)?)+/g);
+	match = match ? match : [];
 
-if (args.length === 0 || args !== match.join('')) {
-	console.log(helpString)
-	process.exit(0)
-}
+	if (exp.length === 0 || exp !== match.join('')) {
+		logger('Please enter a valid expression.');
+	}
 
-var argsS = args.split('x') // Cached split.
+	var expS = exp.split('x'); // Cached split.
+	var q = Number(expS[0].match(/(\+|\-)?\d+/)[0]); // Constant
+	var p = Number(expS[expS.length - 1].match(/(\+|\-)\d+/)[0]); // Leading
 
-var q = Number(argsS[0].match(/(\+|\-)?\d+/)[0]); // Constant
-var p = Number(argsS[argsS.length - 1].match(/(\+|\-)\d+/)[0]); // Leading
+	logger('P is ' + p + ' and Q is ' + q);
 
-console.log(`P is ${p} and Q is ${q}`)
+	var pf = getFactors(p); // Factors of p
+	var qf = getFactors(q); // Factors of q
+	var pq = new Set(); // Set for possible Zeros
+	var zeros = new Set(); // Set for Zeros
 
-var pf = getFactors(p) // Factors of p
-var qf = getFactors(q) // Factors of q
-var pq = new Set() // Set for possible Zeros
-var zeros = new Set() // Set for Zeros
+	logger('Factors of P are +-{' + pf.reduce(function (a, b) {
+		return a + ', ' + b;
+	}) + '}');
+	logger('Factors of Q are +-{' + qf.reduce(function (a, b) {
+		return a + ', ' + b;
+	}) + '}');
 
-console.log(`Factors of P are +-{${pf.reduce((a, b) => `${a}, ${b}`)}}`)
-console.log(`Factors of Q are +-{${qf.reduce((a, b) => `${a}, ${b}`)}}`)
-
-for (var i = 0; i < pf.length; i++) {
-	for (var j = 0; j < qf.length; j++) {
-		var fraction = mjs.fraction(pf[i]/qf[j])
-		if (fraction.d === 1) { // Omit if denominator is 1.
-			pq.add(`${fraction.n}`)
-		} else {
-			pq.add(`${fraction.n}/${fraction.d}`) // Add a possible zero to the set.
+	for (var i = 0; i < pf.length; i++) {
+		for (var j = 0; j < qf.length; j++) {
+			var fraction = math.fraction(pf[i] / qf[j]);
+			if (fraction.d === 1) {
+				// Omit if denominator is 1.
+				pq.add('' + fraction.n);
+			} else {
+				pq.add(fraction.n + '/' + fraction.d); // Add a possible zero to the set.
+			}
 		}
 	}
-}
 
-console.log(`Possible zeros are +-{${Array.from(pq).reduce((a,b) => `${a}, ${b}`)}}`)
+	logger('Possible zeros are +-{' + Array.from(pq).reduce(function (a, b) {
+		return a + ', ' + b;
+	}) + '}');
 
-pq.forEach((val) => {
-	var negVal = '-' + val
-	var res1 = mjs.eval(args, { x: mjs.eval(val) })
-	var res2 = mjs.eval(args, { x: mjs.eval(negVal) })
-	if (res1 === 0) zeros.add(val) // The positive value is a zero.
-	if (res2 === 0) zeros.add(negVal) // The negative value is a zero.
-})
+	pq.forEach(function (val) {
+		var negVal = '-' + val;
+		var res1 = math.eval(exp, { x: math.eval(val) });
+		var res2 = math.eval(exp, { x: math.eval(negVal) });
+		if (res1 === 0) zeros.add(val); // The positive value is a zero.
+		if (res2 === 0) zeros.add(negVal); // The negative value is a zero.
+	});
 
-if (Array.from(zeros).length === 0) {
-	console.log(`There are no zeros.`)
-} else {
-	console.log(`The zeros are: ${Array.from(zeros).reduce((a, b) => `${a}, ${b}`)}`)
-}
-
-function getFactors(num) { // Function to accumulate all possible factors.
-	num = mjs.abs(num) // Absolute value of num.
-	var nums = []
-	for (var i = 0; i <= num; i++) {
-		nums.push(i)
+	if (Array.from(zeros).length === 0) {
+		logger('There are no zeros.');
+	} else {
+		logger('The zeros are: ' + Array.from(zeros).reduce(function (a, b) {
+			return a + ', ' + b;
+		}));
 	}
-	nums = nums.filter(a => num % a === 0) // Filter uses modulo's returned value compared to 0.
-	return nums
+}
+
+function getFactors(num) {
+	// Function to accumulate all possible factors.
+	num = math.abs(num); // Absolute value of num.
+	var nums = [];
+	for (var i = 0; i <= num; i++) {
+		nums.push(i);
+	}
+	nums = nums.filter(function (a) {
+		return num % a === 0;
+	}); // Filter uses modulo's returned value compared to 0.
+	return nums;
 }
