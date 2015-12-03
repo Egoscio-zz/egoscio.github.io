@@ -2,11 +2,19 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 	<title>Egoscio's GitHub Pages WebSite</title>
 </head>
 <body>
-	<span>Welcome to my Website!</span>
-	<script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
+	<div id="zero-container">
+		<form id="zero-form">
+			<h1>Zeros</h1>
+			<input type="text" placeholder="Expression, IE: x^3+x^2-10x+8">
+			<input type="submit" value="Calculate!">
+		</form>
+	</div>
+	<script type="application/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
+	<script type="application/javascript" src="bower_components/mathjs/dist/math.min.js"></script>
+	<script type="application/javascript" src="zeros.js"></script>
 </body>
 </html>
