@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- Very simple and insecure way of hiding things from regular users. -->
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<style>
+		*::before,
+		*::after,
+		* {
+			box-sizing: border-box;
+		}
+		
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		
+		html,
+		body {
+			min-height: 100%;
+			width: 100%;
+		}
+		
+		#password-form {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: #4a4a4a;
+		}
+		
+		#password-frame {
+			margin: 8% auto 0 auto;
+			padding: 10px;
+			border-radius: 10px;
+			min-width: 300px;
+			max-width: 60%;
+			background-color: black;
+		}
+		
+		#password-input,
+		#password-submit {
+			height: 85px;
+			width: 100%;
+			display: block;
+			font-size: 3em;
+			color: white;
+			border: none;
+			outline: none;
+			background-color: black;
+			transition-duration: 0.5s;
+			-webkit-appearance: false;
+			appearance: false;
+			text-align: center;
+		}
+		
+		#secret {
+			display: none;
+		}
+	</style>
+	<title>Password Demo</title>
+</head>
+<body>
+	<form id="password-form">
+		<div id="password-frame">
+			<input id="password-input" type="password" value="password">
+			<button id="password-submit">Submit</button>
+		</div>
+	</form>
+	<div id="secret">RG9uJ3QgbG9vayBhdCBtZSEgSSdtIGEgc2VjcmV0LCB1bmxlc3MgeW91IGtub3cgbXkgcGFzc3dvcmQgO10K</div>
+	<script type="application/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
+	<script type="application/javascript">
+		var password = 'dGhlUGFzc3dvcmQxMzM3'
+		var $pForm = $('#password-form')
+		var $pInput = $('#password-input')
+		var $pSubmit = $('#password-submit')
+		var $secret = $('#secret')
+		
+		$pForm.on('submit', function (e) {
+			if (btoa($pInput.val()) === password) {
+				$pSubmit.css('background-color', 'lime')
+				$pSubmit.text('Access Granted')
+				setTimeout(function () {
+					$secret.text(atob($secret.text()))
+					$pForm.hide()
+					$secret.show()
+				}, 1000)
+			} else {
+				$pSubmit.css('background-color', 'red')
+				$pSubmit.text('Access Denied')
+				setTimeout(function () {
+					$pInput.val('')
+					$pSubmit.text('Submit')
+					$pSubmit.css('background-color', 'black')
+				}, 1000)
+			}
+			return false
+		})
+	</script>
+</body>
