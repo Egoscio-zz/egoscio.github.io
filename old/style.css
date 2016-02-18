@@ -1,0 +1,44 @@
+/* style.css */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	min-height: 100%;
+	width: 100%;
+}
+
+body {
+	background-color: #dddddd;
+}
+
+body,
+input {
+	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	font-size: 1.25em;
+}
+
+#zero-container {
+	margin: 0 auto;
+	width: 500px;
+	height: 300px;
+}
+
+#zero-input,
+#zero-submit {
+	height: 50px;
+	width: 85%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border: 1px solid #333;
+}

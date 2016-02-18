@@ -1,29 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<title>Egoscio's GitHub Pages WebSite</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" tyep="text/css" href="style.css">
+  <title>Egoscio's Github Pages</title>
 </head>
 <body>
-	<div id="zero-container">
-		<form id="zero-form">
-			<h1>Zeros</h1>
-			<input id="zero-input" type="text" placeholder="Expression, IE: x^3+x^2-10x+8">
-			<input id="zero-submit" type="submit" value="Calculate!">
-		</form>
-		<div id="zero-results">
-			P is 8 and Q is 1<br/ >
-			Factors of P are +-{1, 2, 4, 8}<br/ >
-			Factors of Q are +-{1}<br/ >
-			Possible zeros are +-{1, 2, 4, 8}<br/ >
-			The zeros are: 1, 2, -4<br/ >
-		</div>
-	</div>
-	<script type="application/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script type="application/javascript" src="bower_components/mathjs/dist/math.min.js"></script>
-	<script type="application/javascript" src="array-from.js"></script>
-	<script type="application/javascript" src="zeros.js"></script>
-	<script type="application/javascript" src="script.js"></script>
+  <div id="main">
+    <form id="dumb-form">
+      <input type="text" placeholder="Sentence">
+      <button type="submit">Dumbify</button>
+    </form>
+  </div>
+  <script type="application/javascript" src="/jquery-latest.min.js"></script>
+  <script type="application/javascript" src="script.js"></script>
 </body>
-</html>
