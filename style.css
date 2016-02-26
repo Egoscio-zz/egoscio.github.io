@@ -32,6 +32,17 @@ button {
   height: 2em;
   width: 80%;
   text-align: center;
+  border: 3px solid #4a4a4a;
+  border-radius: 5px;
+  background-color: #fff;
+}
+input:focus,
+button:focus {
+  outline: none;
+}
+.hidden {
+  display: none;
+  opacity: 0;
 }
 #logo img {
   height: 200px;
@@ -49,8 +60,6 @@ button {
   right: 0;
   bottom: 0;
   background: rgba(255,255,255,0.7);
-  display: none;
-  opacity: 0;
 }
 #close {
   position: fixed;

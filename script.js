@@ -27,11 +27,15 @@ $('#buttons button, #close').on('click', function (e) {
 
 $('#buttons button').on('click', function (e) {
   var page = $(e.target).attr('data-page');
+  var $pages = $('#pages');
+  $('#pages div').css('display', 'none');
   if (loaded.indexOf(page) === -1) {
     loadPage(page, function (data) {
       loaded.push(page);
-      $('#pages').html(data);
+      $('#pages').append(data);
     });
+  } else {
+    $('#' + page).css('display', 'block');
   }
   return false;
 });
