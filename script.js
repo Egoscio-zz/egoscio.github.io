@@ -31,6 +31,7 @@ $('#buttons button').on('click', function (e) {
     });
   } else {
     $('#' + page).css('display', 'block');
+    togglePopup();
   }
   return false;
 });
