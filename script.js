@@ -20,22 +20,22 @@ function togglePopup() {
   });
 }
 
-$('#buttons button, #close').on('click', function (e) {
-  togglePopup();
-  return false;
-});
-
 $('#buttons button').on('click', function (e) {
   var page = $(e.target).attr('data-page');
-  var $pages = $('#pages');
   $('#pages div').css('display', 'none');
   if (loaded.indexOf(page) === -1) {
     loadPage(page, function (data) {
       loaded.push(page);
       $('#pages').append(data);
+      togglePopup();
     });
   } else {
     $('#' + page).css('display', 'block');
   }
+  return false;
+});
+
+$('#close').on('click', function (e) {
+  togglePopup();
   return false;
 });
