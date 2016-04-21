@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Stats</title>
+  </head>
+  <body>
+    <form id="stat-form">
+      <h1>Data Set</h1>
+      <input id="set-input" type="text" placeholder="Insert set here">
+      <h1>Transformations</h1>
+      <h2>Add...</h2>
+      <input id="add-input" type="text" placeholder="Numbers to add">
+      <h2>Remove...</h2>
+      <input id="rem-input" type="text" placeholder="Numbers to remove">
+      <h2>Apply expression on set...</h2>
+      <input id="exp-input" type="text" placeholder="Expression to apply">
+      <button type="submit">Calculate</button>
+    </form>
+    <div id="result"></div>
+  </body>
+  <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+  <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.2.0/math.min.js"></script>
+  <script type="application/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <script type="application/javascript" src="mct.js"></script>
+  <script type="application/javascript" src="script.js"></script>
+</html>

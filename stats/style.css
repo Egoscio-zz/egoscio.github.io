@@ -1,0 +1,38 @@
+/* style.css */
+@import url("https://fonts.googleapis.com/css?family=Homenaje");
+*:before,
+*:after,
+* {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  background: #fff;
+}
+body,
+input,
+button,
+textarea {
+  display: block;
+  margin: 10px auto;
+  width: 70%;
+  font-size: 1.5em;
+  font-family: 'Homenaje', sans-serif;
+  color: #4a4a4a;
+}
+input:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+.hidden {
+  display: none;
+}
