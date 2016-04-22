@@ -21,12 +21,16 @@ body,
 input,
 button,
 textarea {
-  display: block;
-  margin: 10px auto;
-  width: 70%;
   font-size: 1.5em;
   font-family: 'Homenaje', sans-serif;
   color: #4a4a4a;
+}
+input,
+textarea,
+button {
+  display: block;
+  margin: 10px auto;
+  width: 70%;
 }
 input:focus,
 textarea:focus,
@@ -35,4 +39,8 @@ button:focus {
 }
 .hidden {
   display: none;
+}
+#stat-form {
+  margin: 2% auto 0 auto;
+  width: 90%;
 }

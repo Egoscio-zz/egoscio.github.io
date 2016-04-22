@@ -99,15 +99,19 @@ var functions = {
   'Outliers': outliers
 };
 
+function round(num) {
+  return Math.round(num * 1e3) / 1e3;
+}
+
 function render(set) {
   set = sortAssend(set);
   return '$$ \\overline{x} = \\frac{' + set.reduce(function (a, b) {
     return a + ' + ' + b;
-  }) + '}{' + set.length + '} = ' + mean(set) + ' $$\n  $$ median = ' + median(set) + ' $$\n  $$ mode = ' + mode(set) + ' $$\n  $$ range = ' + set[set.length - 1] + ' - ' + set[0] + ' = ' + range(set) + ' $$\n  $$ \\sigma = \\sqrt{\\frac{' + set.map(function (a) {
+  }) + '}{' + set.length + '} = ' + round(mean(set)) + ' $$\n  $$ median = ' + median(set) + ' $$\n  $$ mode = ' + mode(set) + ' $$\n  $$ range = ' + set[set.length - 1] + ' - ' + set[0] + ' = ' + range(set) + ' $$\n  $$ \\sigma = \\sqrt{\\frac{' + set.map(function (a) {
     return '(' + a + ' - \\overline{x})^2';
   }).reduce(function (a, b) {
     return a + ' + ' + b;
-  }) + '}{' + set.length + '}} = ' + stdDev(set) + ' $$';
+  }) + '}{' + set.length + '}} = ' + round(stdDev(set)) + ' $$';
 }
 
 function logResults(set) {
