@@ -105,10 +105,10 @@ function round(num) {
 
 function render(set) {
   set = sortAssend(set);
-  return '$$ \\overline{x} = \\frac{' + set.reduce(function (a, b) {
+  return '$$ \\overline{x} = \\frac{' + set.map(round).reduce(function (a, b) {
     return a + ' + ' + b;
-  }) + '}{' + set.length + '} = ' + round(mean(set)) + ' $$\n  $$ median = ' + median(set) + ' $$\n  $$ mode = ' + mode(set) + ' $$\n  $$ range = ' + set[set.length - 1] + ' - ' + set[0] + ' = ' + range(set) + ' $$\n  $$ \\sigma = \\sqrt{\\frac{' + set.map(function (a) {
-    return '(' + a + ' - \\overline{x})^2';
+  }) + '}{' + set.length + '} = ' + round(mean(set)) + ' $$\n  $$ median = ' + round(median(set)) + ' $$\n  $$ mode = ' + round(mode(set)) + ' $$\n  $$ range = ' + round(set[set.length - 1]) + ' - ' + round(set[0]) + ' = ' + round(range(set)) + ' $$\n  $$ \\sigma = \\sqrt{\\frac{' + set.map(function (a) {
+    return '(' + round(a) + ' - \\overline{x})^2';
   }).reduce(function (a, b) {
     return a + ' + ' + b;
   }) + '}{' + set.length + '}} = ' + round(stdDev(set)) + ' $$';
