@@ -20,6 +20,7 @@ html, body {
   height: 50%;
   width: 100%;
   font-size: 3em;
+  font-family: Arial;
   text-align: center;
   padding-top: 100px;
 }
