@@ -1,0 +1,34 @@
+/* style.css */
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+/* Your code goes below here */
+
+.tap {
+  height: 50%;
+  width: 100%;
+  font-size: 3em;
+  text-align: center;
+  padding-top: 100px;
+}
+
+.red {
+  background-color: red;
+  transform: rotate(180deg);
+}
+
+.blue {
+  background-color: blue;
+}
